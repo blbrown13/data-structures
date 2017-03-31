@@ -13,6 +13,7 @@ describe('tree', function() {
 
   it('should add children to the tree', function() {
     tree.addChild(5);
+    console.log(tree.value);
     expect(tree.children[0].value).to.equal(5);
   });
 
