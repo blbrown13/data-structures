@@ -5,18 +5,23 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  var index = getIndexBelowMaxForKey(k, this._limit);
-  var newTuple = [k, v];
-  var bucket = this._storage.get(index);
+  if (this.inputValidation(k, v) === true) {  
+    var index = getIndexBelowMaxForKey(k, this._limit);
+    var newTuple = [k, v];
+    var bucket = this._storage.get(index);
 
-  if (bucket) {
-    bucket.push(newTuple);
+    if (bucket) {
+      bucket.push(newTuple);
+    } else {
+      var newBucket = [];
+      newBucket.push(newTuple);
+      var val = newTuple[1];
+      this._storage.set(index, newBucket);
+    }
   } else {
-    var newBucket = [];
-    newBucket.push(newTuple);
-    var val = newTuple[1];
-    this._storage.set(index, newBucket);
+    return undefined;
   }
+  
 
   //this.checkResize();
 };
@@ -51,6 +56,15 @@ HashTable.prototype.remove = function(k) {
   this._storage.set(index, bucket);
 
   // this.checkSize();
+};
+
+HashTable.prototype.inputValidation = function(k, v) {
+
+  if (typeof arguments[0] !== 'string') {
+    return false;
+  }
+
+  return true;
 };
 
 // HashTable.prototype.countBuckets = function(){

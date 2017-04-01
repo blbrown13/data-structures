@@ -10,6 +10,11 @@ describe('linkedList', function() {
     expect(linkedList).to.have.property('tail');
   });
 
+  it('should initialize with head and tail values of null', function() {
+    expect(linkedList.head).to.equal(null);
+    expect(linkedList.tail).to.equal(null);
+  });
+
   it('should have methods named "addToTail", "removeHead", and "contains"', function() {
     expect(linkedList.addToTail).to.be.a('function');
     expect(linkedList.removeHead).to.be.a('function');
@@ -50,6 +55,8 @@ describe('linkedList', function() {
     linkedList.removeHead();
     expect(linkedList.contains(4)).to.equal(false);
   });
+
+
 
   // add more tests here to test the functionality of linkedList
 });

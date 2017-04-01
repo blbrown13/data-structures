@@ -41,4 +41,15 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should accept only a single value input of type "number" for addChild', function() {
+    tree.addChild('Koa');
+    tree.addChild(true);
+    tree.addChild([1, 2, 3]);
+    tree.addChild(1, 2);
+    expect(tree.contains('Koa')).to.equal(false);
+    expect(tree.contains(true)).to.equal(false);
+    expect(tree.contains([1, 2, 3])).to.equal(false);
+    expect(tree.contains(1, 2)).to.equal(false);
+  });
+
 });

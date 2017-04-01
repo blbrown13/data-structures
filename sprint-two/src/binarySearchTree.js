@@ -13,8 +13,12 @@ BinarySearchTree.prototype.insert = function(val) {
         currentTree.right = new BinarySearchTree(val) : insertTree(currentTree.right, val);
     }
   };
-
-  insertTree(this, val);
+  if (typeof(val) === 'number' && arguments.length === 1) {
+    insertTree(this, val);
+  } else {
+    return;
+  }
+  
 };
 
 BinarySearchTree.prototype.contains = function(val) {

@@ -68,4 +68,20 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+    it('should execute a callback to connect each node to multiple nodes', function() {
+    var connectToFiveAndSix = function(item) {
+      graph.addEdge(item, 5);
+      graph.addEdge(item, 6);
+    };
+    graph.addNode(6);
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(3);
+    graph.forEachNode(connectToFiveAndSix);
+    expect(graph.hasEdge(2, 5)).to.equal(true);
+    expect(graph.hasEdge(3, 5)).to.equal(true);
+    expect(graph.hasEdge(2, 6)).to.equal(true);
+    expect(graph.hasEdge(5, 6)).to.equal(true);
+  });
 });
